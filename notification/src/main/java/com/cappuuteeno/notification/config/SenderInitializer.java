@@ -16,6 +16,6 @@ public class SenderInitializer {
                 senderConfiguration.getTWILIO_AUTH_TOKEN()
         );
 
-        logger.info("config do twilio feito com sucesso!");
+        logger.info("config do twilio feito com sucesso!: ");
     }
 }
