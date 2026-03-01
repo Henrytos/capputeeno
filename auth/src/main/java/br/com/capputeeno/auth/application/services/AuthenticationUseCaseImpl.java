@@ -2,7 +2,7 @@ package br.com.capputeeno.auth.application.services;
 
 import br.com.capputeeno.auth.application.port.in.IAuthenticationUseCase;
 import br.com.capputeeno.auth.application.port.dtos.SignInUserRequestDTO;
-import br.com.capputeeno.auth.application.port.dtos.SingInUserResponseDTO;
+import br.com.capputeeno.auth.application.port.dtos.SignInUserResponseDTO;
 import br.com.capputeeno.auth.application.port.out.IPasswordEncoder;
 import br.com.capputeeno.auth.application.port.out.ITokenUseCase;
 import br.com.capputeeno.auth.application.port.out.IUserRepository;
@@ -23,7 +23,7 @@ public class AuthenticationUseCaseImpl implements IAuthenticationUseCase {
     private final ITokenUseCase iTokenUseCase;
 
     @Override
-    public SingInUserResponseDTO signInUser(SignInUserRequestDTO data) {
+    public SignInUserResponseDTO signInUser(SignInUserRequestDTO data) {
 
         UserEntity user = this.iUserRepository.findByEmail(data.email()).orElseThrow(UserNotFoundException::new);
 
