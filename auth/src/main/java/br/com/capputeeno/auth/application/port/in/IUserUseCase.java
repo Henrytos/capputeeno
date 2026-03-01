@@ -5,4 +5,6 @@ import br.com.capputeeno.auth.domain.entites.UserEntity;
 
 public interface IUserUseCase {
     UserEntity createUser(CreateUserRequestDTO entity);
+
+
 }
