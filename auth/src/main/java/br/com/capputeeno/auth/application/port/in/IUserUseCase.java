@@ -6,5 +6,5 @@ import br.com.capputeeno.auth.domain.entites.UserEntity;
 public interface IUserUseCase {
     UserEntity createUser(CreateUserRequestDTO entity);
 
-
+    void activateA2f(UserEntity user);
 }

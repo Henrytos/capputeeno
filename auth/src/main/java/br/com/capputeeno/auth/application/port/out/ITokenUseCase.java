@@ -5,7 +5,9 @@ import br.com.capputeeno.auth.domain.entites.UserEntity;
 
 public interface ITokenUseCase {
 
-    SignInUserResponseDTO generate(UserEntity user);
+    String generate(UserEntity user);
+
+    String generateRefresh(UserEntity user);
 
     boolean validate(String token);
 

@@ -15,7 +15,9 @@ public class UserMapper extends Mapper<UserEntity, JpaUserEntity> {
                 jpaUserEntity.getUsername(),
                 jpaUserEntity.getEmail(),
                 jpaUserEntity.getPassword(),
-                jpaUserEntity.getImageUrl()
+                jpaUserEntity.getImageUrl(),
+                jpaUserEntity.getSecretA2f(),
+                jpaUserEntity.isActiveA2f()
         );
     }
 

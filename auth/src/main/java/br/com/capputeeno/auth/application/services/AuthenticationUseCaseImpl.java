@@ -5,6 +5,7 @@ import br.com.capputeeno.auth.application.port.dtos.SignInUserRequestDTO;
 import br.com.capputeeno.auth.application.port.dtos.SignInUserResponseDTO;
 import br.com.capputeeno.auth.application.port.out.IPasswordEncoder;
 import br.com.capputeeno.auth.application.port.out.ITokenUseCase;
+import br.com.capputeeno.auth.application.port.out.ITotpUseCase;
 import br.com.capputeeno.auth.application.port.out.IUserRepository;
 import br.com.capputeeno.auth.application.services.exceptions.UserNotFoundException;
 import br.com.capputeeno.auth.application.services.exceptions.WrongCredentialsException;
@@ -22,6 +23,8 @@ public class AuthenticationUseCaseImpl implements IAuthenticationUseCase {
 
     private final ITokenUseCase iTokenUseCase;
 
+    private final ITotpUseCase iTotpUseCase;
+
     @Override
     public SignInUserResponseDTO signInUser(SignInUserRequestDTO data) {
 
@@ -34,9 +37,31 @@ public class AuthenticationUseCaseImpl implements IAuthenticationUseCase {
         }
 
         if(user.isActiveA2f()){
-            return  new SingInUserResponseDTO(null, null, true);
+            return  new SignInUserResponseDTO(null, null, true);
         }
 
-        return iTokenUseCase.generate(user);
+        String token = iTokenUseCase.generate(user);
+        String refreshToken = iTokenUseCase.generate(user);
+
+        return new SignInUserResponseDTO(token, refreshToken, false);
+    }
+
+    @Override
+    public SignInUserResponseDTO signInUser(String email, String code) {
+        UserEntity user = this.iUserRepository.findByEmail(email).orElseThrow(UserNotFoundException::new);
+
+        if(!user.isActiveA2f())
+            throw new WrongCredentialsException();
+
+        boolean isCodeValid = iTotpUseCase.verifyCode(code, user);
+
+        if(!isCodeValid)
+            throw new WrongCredentialsException();
+
+
+        String token = iTokenUseCase.generate(user);
+        String refreshToken = iTokenUseCase.generate(user);
+
+        return new SignInUserResponseDTO(token, refreshToken, true);
     }
 }

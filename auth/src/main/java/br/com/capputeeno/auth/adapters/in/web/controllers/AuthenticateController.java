@@ -5,10 +5,7 @@ import br.com.capputeeno.auth.application.port.dtos.SignInUserResponseDTO;
 import br.com.capputeeno.auth.application.port.in.IAuthenticationUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/auth")
@@ -22,6 +19,16 @@ public class AuthenticateController {
             @RequestBody SignInUserRequestDTO request
     ) {
         SignInUserResponseDTO response = this.iAuthenticationUseCase.signInUser(request);
+
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/sign-in/a2f")
+    public ResponseEntity<SignInUserResponseDTO> singA2f(
+            @RequestBody SignInUserRequestDTO request,
+            @RequestParam String code
+    ) {
+        SignInUserResponseDTO response = this.iAuthenticationUseCase.signInUser(request.email(), code);
 
         return ResponseEntity.ok(response);
     }

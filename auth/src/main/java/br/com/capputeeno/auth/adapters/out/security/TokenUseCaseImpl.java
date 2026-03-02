@@ -30,21 +30,30 @@ public class TokenUseCaseImpl implements ITokenUseCase {
 
 
     @Override
-    public SignInUserResponseDTO generate(UserEntity user) {
+    public String generate(UserEntity user) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(JWT_SECRET_KEY);
-            String token = JWT.create()
+
+            return JWT.create()
                     .withIssuer(JWT_ISSUER)
                     .withSubject(user.getEmail())
                     .withExpiresAt(generateExpireAt(20))
                     .sign(algorithm);
+        } catch (JWTCreationException exception) {
+            return null;
+        }
+    }
 
-            String refreshToken = JWT.create()
+    @Override
+    public String generateRefresh(UserEntity user) {
+        try {
+            Algorithm algorithm = Algorithm.HMAC256(JWT_SECRET_KEY);
+
+            return JWT.create()
                     .withIssuer(JWT_ISSUER)
+                    .withSubject(user.getEmail())
                     .withExpiresAt(generateExpireAt(60 * 3)) // 3 hours
                     .sign(algorithm);
-
-            return new SignInUserResponseDTO(token, refreshToken);
         } catch (JWTCreationException exception) {
             return null;
         }

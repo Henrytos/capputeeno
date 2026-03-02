@@ -7,4 +7,5 @@ public interface IAuthenticationUseCase {
 
     SignInUserResponseDTO signInUser(SignInUserRequestDTO data);
 
+    SignInUserResponseDTO signInUser(String email, String code);
 }

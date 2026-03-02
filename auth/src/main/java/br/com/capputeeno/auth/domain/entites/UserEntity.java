@@ -38,7 +38,7 @@ public class UserEntity {
         this.imageUrl = imageUrl;
     }
 
-    public UserEntity(UUID userId, String username, String email, String password, String imageUrl) {
+    public UserEntity(UUID userId, String username, String email, String password, String imageUrl, String secretA2f,  boolean activeA2f) {
 
         if (userId == null || username.isBlank() || email.isBlank() || password.isBlank() || imageUrl.isBlank()) {
             throw new InvalidInputException();
@@ -49,6 +49,8 @@ public class UserEntity {
         this.email = email;
         this.password = password;
         this.imageUrl = imageUrl;
+        this.secretA2f = secretA2f;
+        this.activeA2f = activeA2f;
     }
 
     public UUID getUserId() {
@@ -89,5 +91,25 @@ public class UserEntity {
 
     public void setActiveA2f(boolean activeA2f) {
         this.activeA2f = activeA2f;
+    }
+
+    public void activateA2f() {
+        this.activeA2f = true;
+    }
+
+    public void setUserId(UUID userId) {
+        this.userId = userId;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
