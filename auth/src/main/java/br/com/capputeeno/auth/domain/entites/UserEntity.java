@@ -2,7 +2,6 @@ package br.com.capputeeno.auth.domain.entites;
 
 import java.util.UUID;
 
-import br.com.capputeeno.auth.adapters.out.database.entities.JpaUserEntity;
 import br.com.capputeeno.auth.domain.exceptions.InvalidInputException;
 
 public class UserEntity {
@@ -12,6 +11,8 @@ public class UserEntity {
     private String email;
     private String password;
     private String imageUrl;
+    private String secretA2f;
+    private boolean activeA2f = false;
 
     public UserEntity() {
     }
@@ -72,5 +73,21 @@ public class UserEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isActiveA2f() {
+        return activeA2f;
+    }
+
+    public String getSecretA2f() {
+        return secretA2f;
+    }
+
+    public void setSecretA2f(String secretA2f) {
+        this.secretA2f = secretA2f;
+    }
+
+    public void setActiveA2f(boolean activeA2f) {
+        this.activeA2f = activeA2f;
     }
 }

@@ -33,6 +33,10 @@ public class AuthenticationUseCaseImpl implements IAuthenticationUseCase {
             throw new WrongCredentialsException();
         }
 
+        if(user.isActiveA2f()){
+            return  new SingInUserResponseDTO(null, null, true);
+        }
+
         return iTokenUseCase.generate(user);
     }
 }
