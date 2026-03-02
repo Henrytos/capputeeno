@@ -1,12 +1,11 @@
 package br.com.capputeeno.auth.adapters.in.web.controllers;
 
-import br.com.capputeeno.auth.adapters.in.web.controllers.presenters.CreateUserPresenter;
+import br.com.capputeeno.auth.adapters.in.web.presenters.CreateUserPresenter;
 import br.com.capputeeno.auth.application.port.in.IUserUseCase;
 import br.com.capputeeno.auth.domain.entites.CreateUserRequestDTO;
 import br.com.capputeeno.auth.domain.entites.UserEntity;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.jspecify.annotations.Nullable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

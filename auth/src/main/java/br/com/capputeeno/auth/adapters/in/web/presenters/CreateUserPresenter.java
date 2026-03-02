@@ -1,4 +1,4 @@
-package br.com.capputeeno.auth.adapters.in.web.controllers.presenters;
+package br.com.capputeeno.auth.adapters.in.web.presenters;
 
 import br.com.capputeeno.auth.domain.entites.UserEntity;
 import lombok.Getter;
