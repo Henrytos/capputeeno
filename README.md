@@ -8,7 +8,6 @@
 
 - [x] Criar endpoint de listagem paginada de produtos - área de conhecimento (back end)
 - [ ] Implementar cache com Redis para listagem de produtos - área de conhecimento (infra)
-- [ ] Criar interface de catálogo com paginação - área de conhecimento (front end)
 - [ ] Integrar catálogo com API Gateway e Eureka - área de conhecimento (back end)
 
 ---
@@ -17,7 +16,6 @@
 
 - [x] Criar endpoint para filtragem por categoria - área de conhecimento (back end)
 - [ ] Criar endpoint para busca por nome - área de conhecimento (back end)
-- [ ] Implementar UI de filtros e campo de busca - área de conhecimento (front end)
 
 ---
 
@@ -25,7 +23,6 @@
 
 - [ ] Criar serviço de carrinho com endpoints para adicionar, remover e listar itens - área de conhecimento (back end)
 - [ ] Persistir carrinho com PostgreSQL - área de conhecimento (infra)
-- [ ] Criar interface de carrinho com resumo do pedido - área de conhecimento (front end)
 - [ ] Integrar carrinho com serviço de autenticação via OpenFeign - área de conhecimento (back end)
 
 ---
@@ -35,15 +32,12 @@
 - [x] Implementar login e cadastro com JWT e 2FA - área de conhecimento (back end)
 - [x] Configurar Spring Security no serviço com jwt - área de conhecimento (back end)
 - [ ] Persistir usuários com PostgreSQL e Redis - área de conhecimento (infra)
-- [ ] Criar interface de login e cadastro - área de conhecimento (front end)
-
 ---
 
 ## 💳 Pagamento
 
 - [x] Integrar serviço de pagamento com Mercado Pago via OpenFeign - área de conhecimento (back end)
 - [ ] Criar eventos Kafka para pagamento preferencial, confirmado e negado - área de conhecimento (back end)
-- [ ] Criar interface de finalização de compra - área de conhecimento (front end)
 
 ---
 
