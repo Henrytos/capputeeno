@@ -7,6 +7,8 @@ import br.com.capputeeno.product.models.enums.ProductType;
 import br.com.capputeeno.product.respositories.ProductRepository;
 import br.com.capputeeno.product.services.exceptions.ProductNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
+@Log4j2
 public class ProductService {
 
     private final ProductRepository productRepository;
@@ -39,8 +42,9 @@ public class ProductService {
         });
     }
 
+    @Cacheable(value = "products")
     public ProductResponseDTO findByProductId(UUID productId) {
-
+        log.info("Buscando produto {}", productId);
         ProductEntity product = this.productRepository.findById(productId).orElseThrow(ProductNotFoundException::new);
 
         if (product instanceof BookEntity book)

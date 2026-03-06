@@ -23,8 +23,8 @@ public class FetchProductController {
     @GetMapping
     public ResponseEntity<Page<ProductResponseDTO>> fetchProducts(
             @PageableDefault(size = 12) Pageable pageable,
-            @RequestParam String productType,
-            @RequestParam String search) {
+            @RequestParam(defaultValue = "all") String productType,
+            @RequestParam(defaultValue = "") String search) {
 
         Page<ProductResponseDTO> response;
 

@@ -7,15 +7,15 @@
 ## 🛍️ Catálogo de Produtos
 
 - [x] Criar endpoint de listagem paginada de produtos - área de conhecimento (back end)
-- [ ] Implementar cache com Redis para listagem de produtos - área de conhecimento (infra)
-- [ ] Integrar catálogo com API Gateway e Eureka - área de conhecimento (back end)
+- [x] Implementar cache com Redis para listagem de produtos - área de conhecimento (infra)
+- [x] Integrar catálogo com API Gateway e Eureka - área de conhecimento (back end)
 
 ---
 
 ## 🔍 Filtro e Busca
 
 - [x] Criar endpoint para filtragem por categoria - área de conhecimento (back end)
-- [ ] Criar endpoint para busca por nome - área de conhecimento (back end)
+- [x] Criar endpoint para busca por nome - área de conhecimento (back end)
 
 ---
 

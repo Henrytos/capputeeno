@@ -1,5 +1,6 @@
 package br.com.capputeeno.product.models;
 
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -10,6 +11,11 @@ import java.util.UUID;
 @Entity
 @Table(name = "authors")
 @Data
+@JsonIncludeProperties(
+        value = {
+                "books"
+        }
+)
 public class AuthorEntity {
 
     @Id
