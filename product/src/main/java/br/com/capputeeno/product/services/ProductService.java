@@ -22,18 +22,17 @@ public class ProductService {
     public Page<ProductResponseDTO> fetch(Pageable pageable) {
 
         return this.productRepository.findAll(pageable).map(product -> {
-            if(product instanceof BookEntity book)
+            if (product instanceof BookEntity book)
                 return new ProductResponseDTO(book);
 
             return new ProductResponseDTO(product);
         });
     }
 
-
     public Page<ProductResponseDTO> fetch(Pageable pageable, ProductType productType) {
 
         return this.productRepository.findByType(productType, pageable).map(product -> {
-            if(product instanceof BookEntity book)
+            if (product instanceof BookEntity book)
                 return new ProductResponseDTO(book);
 
             return new ProductResponseDTO(product);
@@ -44,9 +43,19 @@ public class ProductService {
 
         ProductEntity product = this.productRepository.findById(productId).orElseThrow(ProductNotFoundException::new);
 
-        if(product instanceof BookEntity book)
+        if (product instanceof BookEntity book)
             return new ProductResponseDTO(book);
 
         return new ProductResponseDTO(product);
+    }
+
+    public Page<ProductResponseDTO> fetch(Pageable pageable, String search) {
+
+        return this.productRepository.findByNameContainingIgnoreCase(search, pageable).map(product -> {
+            if (product instanceof BookEntity book)
+                return new ProductResponseDTO(book);
+
+            return new ProductResponseDTO(product);
+        });
     }
 }

@@ -23,12 +23,15 @@ public class FetchProductController {
     @GetMapping
     public ResponseEntity<Page<ProductResponseDTO>> fetchProducts(
             @PageableDefault(size = 12) Pageable pageable,
-            @RequestParam String productType) {
+            @RequestParam String productType,
+            @RequestParam String search) {
 
         Page<ProductResponseDTO> response;
 
-        if(productType.equalsIgnoreCase("all"))
+        if (productType.equalsIgnoreCase("all") && search.isEmpty())
             response = this.productService.fetch(pageable);
+        else if (productType.equalsIgnoreCase("all") && !search.isEmpty())
+            response = this.productService.fetch(pageable, search);
         else
             response = this.productService.fetch(pageable, ProductType.valueOf(productType));
 
