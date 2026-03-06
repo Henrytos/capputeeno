@@ -52,8 +52,8 @@
 ## ⚙️ Infraestrutura e Comunicação
 
 - [ ] Configurar Spring Cloud Gateway e Eureka para roteamento e descoberta de serviços - área de conhecimento (infra)
-- [ ] Configurar Kafka como plataforma de eventos - área de conhecimento (infra)
-- [ ] Configurar Redis para cache de produtos e autenticação - área de conhecimento (infra)
-- [ ] Configurar PostgreSQL para persistência de dados - área de conhecimento (infra)
+- [x] Configurar Kafka como plataforma de eventos - área de conhecimento (infra)
+- [x] Configurar Redis para cache de produtos e autenticação - área de conhecimento (infra)
+- [x] Configurar PostgreSQL para persistência de dados - área de conhecimento (infra)
 
 ---
