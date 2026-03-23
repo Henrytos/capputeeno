@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ProductResponseDTO {
+public class ProductResponseDTO implements Serializable {
 
     private UUID id;
 
@@ -39,7 +40,7 @@ public class ProductResponseDTO {
 
     private CategoryBook category;
 
-    private List<AuthorEntity> authors;
+    private List<AuthorResponseDTO> authors;
 
     private String publish;
 
@@ -57,13 +58,18 @@ public class ProductResponseDTO {
         this(product.getId(), product.getName(), product.getPrice(), product.getDescription(), product.getImageUrl(), product.getType(), product.getIsAvailable());
     }
 
-    public ProductResponseDTO(BookEntity book){
+    public ProductResponseDTO(BookEntity book) {
         this(book.getId(), book.getName(), book.getPrice(), book.getDescription(), book.getImageUrl(), book.getType(), book.getIsAvailable());
 
         this.quantityPages = book.getQuantityPages();
         this.category = book.getCategory();
         this.authors = new ArrayList<>();
-        this.authors.addAll(book.getAuthors());
+        this.authors.addAll(book.getAuthors().stream().map(author -> new AuthorResponseDTO(author.getName())).toList());
         this.publish = book.getPublish();
+    }
+
+    public record AuthorResponseDTO(
+            String name
+    ) {
     }
 }
